@@ -7,6 +7,17 @@ class Board
     self.seed_bombs
   end
 
+  def [](pos)
+    pos = x,y
+    grid[x][y]
+  end
+
+  def []=(pos, status)
+    pos = x,y
+    tile = grid[x][y]
+    tile.status = status
+  end
+
   def seed_bombs
     bomb_pos.each do
   end
