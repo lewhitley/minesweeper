@@ -1,10 +1,21 @@
+require 'byebug'
+require_relative 'tile.rb'
+
 class Board
+
+  attr_reader :grid, :size
+
   def initialize(size = 9)
+    debugger
     @size = size
-    @grid = Array.new(size) do
-      Array.new(size) {Tile.new(!!!!)}
-    end
     self.seed_bombs
+    self.empty_grid
+  end
+
+  def empty_grid
+    @grid = Array.new(@size) do
+      Array.new(@size) {Tile.new(self)}
+    end
   end
 
   def [](pos)
@@ -19,7 +30,7 @@ class Board
   end
 
   def seed_bombs
-    bomb_pos.each do
+    # bomb_pos.each do
   end
 
   def bomb_pos
@@ -31,3 +42,6 @@ class Board
   end
 
 end
+
+board = Board.new
+tile = Tile.new(board)

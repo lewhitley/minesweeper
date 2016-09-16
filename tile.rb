@@ -1,14 +1,17 @@
+require_relative 'board.rb'
+
 class Tile
+  attr_reader :board
 
   def initialize(board, bomb = false)
+    @board = board
     @revealed = false
     @bomb = bomb
     @status = :unexplored
-    @board = board
   end
 
   def reveal
-    @revealed ? puts "Tile already revealed " : @revealed == true
+    @revealed ? "Tile already revealed " : @revealed == true
   end
 
   def neighbors_pos(pos) #returns array of positions of adjacecent tiles
@@ -58,9 +61,9 @@ class Tile
 
   def valid_move?(choice)
     if choice != "r" || choice != "f"
-      false
+      return false
     else @revealed
-      false
+      return false
     end
     true
   end
@@ -69,3 +72,7 @@ class Tile
     @bomb
   end
 end
+
+board = Board.new
+tile = Tile.new(board)
+tile.neighbors([2,3])
